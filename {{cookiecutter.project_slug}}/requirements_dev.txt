@@ -1,0 +1,8 @@
+-r requirements.txt
+pylint>=2.5.0
+pylint-fail-under>=0.3.0
+pydocstyle
+isort[pyproject]>=4.3.21
+black
+changelog-cli
+sphinx>=3.0

@@ -1,0 +1,9 @@
+{
+	"project_name": "Python Boilerplate",
+	"project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+	"project_short_description": "Python Boilerplate contains the basics of a Python package.",
+	"version": "0.1.0",
+	"lead_maintainer_email": "[email protected]",
+	"author": "Name",
+    "github_username": "{{ cookiecutter.author.lower().replace(' ', '_').replace('-', '_') }}"
+}
