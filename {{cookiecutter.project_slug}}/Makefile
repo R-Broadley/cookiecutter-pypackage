@@ -11,7 +11,7 @@ SOURCES := $(shell find "{{ cookiecutter.project_slug }}" -name '*.py')
 	shell
 	clean
 
-all: dist docs
+all: dev test dist docs
 
 dist: $(SOURCES) setup.py
 	./buildscripts/build_package.sh
@@ -30,6 +30,9 @@ format:
 
 lint:
 	./buildscripts/lint_python.sh
+
+test:
+	./buildscripts/run_unittests.py
 
 image: requirements.txt requirements_dev.txt
 	./buildscripts/build_image.sh {{ cookiecutter.project_slug }}

@@ -1,6 +1,7 @@
 -r requirements.txt
 black
 changelog-cli
+html-testRunner>=1.2
 isort[pyproject]>=4.3
 pydocstyle
 pylint-fail-under>=0.3
