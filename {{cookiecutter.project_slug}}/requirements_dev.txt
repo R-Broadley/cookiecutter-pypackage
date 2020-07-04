@@ -1,8 +1,9 @@
 -r requirements.txt
-pylint>=2.5.0
-pylint-fail-under>=0.3.0
-pydocstyle
-isort[pyproject]>=4.3.21
 black
 changelog-cli
+isort[pyproject]>=4.3
+pydocstyle
+pylint-fail-under>=0.3
+pylint>=2.5
 sphinx>=3.0
+wheel>=0.34
