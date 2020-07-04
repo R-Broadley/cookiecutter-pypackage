@@ -5,7 +5,7 @@ from distutils.core import run_setup
 
 HEADER = [
     "# This file is auto generated, set requirements in setup.py",
-    "# and run update_requirements_txt.py",
+    "# and run make requirements.txt to update this file.",
     "\n",
 ]
 
