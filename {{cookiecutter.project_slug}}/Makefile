@@ -9,6 +9,7 @@ SOURCES := $(shell find "{{ cookiecutter.project_slug }}" -name '*.py')
 	lint
 	image
 	shell
+	clean
 
 all: dist docs
 
@@ -35,3 +36,6 @@ image: requirements.txt requirements_dev.txt
 
 shell: image
 	./buildscripts/start_container.sh --entrypoint /bin/bash {{ cookiecutter.project_slug }}
+
+clean:
+	 ./buildscripts/clean.sh
