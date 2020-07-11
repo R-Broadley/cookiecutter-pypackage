@@ -50,10 +50,10 @@ class TestVersionInfo(TestCase):
         """Ensure version number can be extracted without importing package."""
         version_file = "{{ cookiecutter.project_slug }}/_version.py"
         try:
-            with open(version_file, "r") as vf:
-                value = vf.readlines()[-1]
+            with open(version_file, "r") as vfile:
+                value = vfile.readlines()[-1]
                 version = value.split("=")[1].strip().strip('"')
-        except Exception as exception:
+        except Exception as exception:  # pylint: disable=broad-except
             self.fail(
                 msg=f"Could not extract version from _version.py due to: `{exception}`"
             )
