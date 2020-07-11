@@ -36,6 +36,7 @@ setup(
     description=DESCRIPTION,
     install_requires=REQUIREMENTS,
     long_description="\n\n".join([README, CHANGELOG]),
+    long_description_content_type="text/markdown",
     include_package_data=True,
     keywords="{{ cookiecutter.project_slug }}",
     name=NAME,
