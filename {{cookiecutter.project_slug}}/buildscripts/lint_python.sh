@@ -1,6 +1,7 @@
 #!/bin/sh
 
 BUILDSCRIPTS="$(dirname "$0")"
+PACKAGENAME="$1"
 
 source "$BUILDSCRIPTS/output_formatting.sh"
 
@@ -15,7 +16,7 @@ end_section "-"
 
 # Run pylint and store score
 echo "Running static analysis..."
-pylint-fail-under --fail_under $PYLINT_FAIL setup.py {{ cookiecutter.project_slug }} unittests
+pylint-fail-under --fail_under $PYLINT_FAIL setup.py $PACKAGENAME unittests
 pylint_result=$?
 
 end_section "="

@@ -1,12 +1,13 @@
 #!/bin/sh
 
 BUILDSCRIPTS="$(dirname "$0")"
+PACKAGENAME="$1"
 
 source "$BUILDSCRIPTS/output_formatting.sh"
 
-INCLUDEFILES="setup.py {{ cookiecutter.project_slug }} unittests"
+INCLUDEFILES="setup.py $PACKAGENAME unittests"
 
-if [ "$1" = "--check" ]
+if [ "$2" = "--check" ]
 then
 	function run_isort {
 		echo "Checking If Imports Need Sorting..."
