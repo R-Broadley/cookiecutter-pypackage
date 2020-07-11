@@ -15,3 +15,7 @@ skip_glob = "docs"
 [tool.pylint]
 	[tool.pylint.FORMAT]
 	max-line-length = "89"
+	disable = [
+		"bad-continuation",  # Conflict with black and disabled in v2.6
+		"bad-whitespace"     # Conflict with black and disabled in v2.6
+	]
