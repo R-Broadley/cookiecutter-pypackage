@@ -22,8 +22,12 @@ share/python-wheels/
 .installed.cfg
 *.egg
 
+# Testing
+.tox
+
 # Sphinx documentation
 docs/_build/
 
 # Auto generated
 requirements.txt
+reports/

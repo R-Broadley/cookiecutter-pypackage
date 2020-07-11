@@ -1,16 +1,5 @@
-FROM python:3.7
+FROM fedora:32
 
-COPY requirements_dev.txt /tmp
-COPY requirements.txt /tmp
-
-RUN pip install -r /tmp/requirements_dev.txt
-
-ARG USER="pyuser"
-ARG USER_UID="1000"
-ARG USER_GID=$USER_UID
-RUN echo "user $USER UID $USER_UID GID $USER_GID"
-RUN groupadd --gid $USER_GID $USER
-RUN useradd --uid $USER_UID --gid $USER_GID --no-create-home $USER
-USER $USER
+RUN dnf install -y python3-tox
 
 # vim: set ft=dockerfile:

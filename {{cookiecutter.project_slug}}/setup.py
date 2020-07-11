@@ -26,19 +26,22 @@ setup(
     author=AUTHOR,
     # Email address of lead maintainer
     author_email="{{ cookiecutter.lead_maintainer_email }}",
-    python_requires=">=3.7",
+    python_requires=">=3.6",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
         "Natural Language :: English",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
     ],
     description=DESCRIPTION,
     install_requires=REQUIREMENTS,
     long_description="\n\n".join([README, CHANGELOG]),
     long_description_content_type="text/markdown",
     include_package_data=True,
-    keywords="{{ cookiecutter.project_slug }}",
+    keywords=["{{ cookiecutter.project_slug }}"],
     name=NAME,
     packages=find_packages(
         include=["{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}.*"]

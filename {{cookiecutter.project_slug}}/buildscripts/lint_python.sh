@@ -31,6 +31,7 @@ then
 	then
 		echo "The package's pylint score is too low."
 	fi
+	exit 1
 else
 	echo "Package meets the required standard."
 fi
