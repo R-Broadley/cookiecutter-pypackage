@@ -1,10 +1,10 @@
 [tool.black]
-line-length = 89
+line-length = 88
 exclude = "docs"
 
 [tool.isort]
 multi_line_output = 3
-line_length = 89
+line_length = 88
 indent = 4
 length_sort = false
 include_trailing_comma = true
@@ -14,7 +14,7 @@ skip_glob = "docs"
 
 [tool.pylint]
 	[tool.pylint.FORMAT]
-	max-line-length = "89"
+	max-line-length = "88"
 	disable = [
 		"bad-continuation",  # Conflict with black and disabled in v2.6
 		"bad-whitespace"     # Conflict with black and disabled in v2.6
