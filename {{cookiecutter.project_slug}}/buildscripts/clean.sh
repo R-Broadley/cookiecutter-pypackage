@@ -17,6 +17,7 @@ function rm_if_file {
 }
 
 rm_if_dir docs/_build
+rm_if_dir docs/source/api
 rm_if_dir reports
 rm_if_dir .tox
 rm_if_file requirements.txt

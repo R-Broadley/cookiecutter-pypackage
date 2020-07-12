@@ -27,6 +27,7 @@ share/python-wheels/
 
 # Sphinx documentation
 docs/_build/
+docs/source/api/
 
 # Auto generated
 requirements.txt
