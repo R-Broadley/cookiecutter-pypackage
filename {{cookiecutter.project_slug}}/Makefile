@@ -2,6 +2,7 @@ SHELL := /bin/sh
 
 SOURCES := $(shell find "{{ cookiecutter.project_slug }}" -name '*.py')
 UNITTESTS := $(shell find "unittests" -name '*.py')
+PYVER := $(shell python3 -c "from sys import version_info; print(f'{version_info.major}.{version_info.minor}')")
 
 .PHONY:
 	all
@@ -41,9 +42,10 @@ test: $(SOURCES) $(UNITTESTS) tox.ini image
 requirements.txt: setup.py
 	./buildscripts/update_requirements_txt.py
 
-dev: requirements.txt requirements_dev.txt tox.ini
-	tox -e lint --devenv .venv
-	source .venv/bin/activate && pip install -U pip -r $(word 2,$^) -r $<
+dev: export PYVERSION=$(PYVER)
+dev: requirements_dev.txt tox.ini
+	tox -e devenv
+	source .venv/bin/activate && pip install -U pip -r $<
 
 clean:
 	./buildscripts/clean.sh
