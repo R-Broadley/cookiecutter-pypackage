@@ -1,6 +1,6 @@
 [tool.black]
 line-length = 88
-exclude = "docs"
+exclude = '/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|_build|buck-out|build|dist|docs)/'
 
 [tool.isort]
 multi_line_output = 3
