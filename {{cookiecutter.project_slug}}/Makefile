@@ -1,8 +1,12 @@
 SHELL := /bin/sh
 
+PROJECT_SLUG := "{{ cookiecutter.project_slug }}"
 SOURCES := $(shell find "{{ cookiecutter.project_slug }}" -name '*.py')
 UNITTESTS := $(shell find "unittests" -name '*.py')
+TOX_CONTAINER_DEPS = tox.ini image
 PYVER := $(shell python3 -c "from sys import version_info; print(f'{version_info.major}.{version_info.minor}')")
+
+START_CONTAINER_CMD = ./buildscripts/start_container.sh $(PROJECT_SLUG)
 
 .PHONY:
 	all
@@ -19,25 +23,25 @@ PYVER := $(shell python3 -c "from sys import version_info; print(f'{version_info
 all: test
 
 image:
-	./buildscripts/build_image.sh {{ cookiecutter.project_slug }}
+	./buildscripts/build_image.sh $(PROJECT_SLUG)
 
-dist: $(SOURCES) setup.py tox.ini image
-	./buildscripts/start_container.sh {{ cookiecutter.project_slug }} tox -e wheel
+dist: $(SOURCES) setup.py $(TOX_CONTAINER_DEPS)
+	$(START_CONTAINER_CMD) tox -e wheel
 
-docs: $(SOURCES) docs/conf.py tox.ini image
-	./buildscripts/start_container.sh {{ cookiecutter.project_slug }} tox -e $@
+docs: $(SOURCES) docs/conf.py $(TOX_CONTAINER_DEPS)
+	$(START_CONTAINER_CMD) tox -e $@
 
-format: $(SOURCES) tox.ini image
-	./buildscripts/start_container.sh {{ cookiecutter.project_slug }} tox -e $@
+format: $(SOURCES) $(TOX_CONTAINER_DEPS)
+	$(START_CONTAINER_CMD) tox -e $@
 
-lint: $(SOURCES) tox.ini image
-	./buildscripts/start_container.sh {{ cookiecutter.project_slug }} tox -e $@
+lint: $(SOURCES) $(TOX_CONTAINER_DEPS)
+	$(START_CONTAINER_CMD) tox -e $@
 
 shell: image
-	./buildscripts/start_container.sh --entrypoint /bin/bash {{ cookiecutter.project_slug }}
+	./buildscripts/start_container.sh --entrypoint /bin/bash $(PROJECT_SLUG)
 
-test: $(SOURCES) $(UNITTESTS) tox.ini image
-	./buildscripts/start_container.sh {{ cookiecutter.project_slug }} tox
+test: $(SOURCES) $(UNITTESTS) $(TOX_CONTAINER_DEPS)
+	$(START_CONTAINER_CMD) tox
 
 requirements.txt: setup.py
 	./buildscripts/update_requirements_txt.py
