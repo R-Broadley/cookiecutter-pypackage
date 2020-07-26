@@ -1,11 +1,11 @@
-Python Boilerplate's API!
+{{ cookiecutter.project_name }}'s API!
 ===========================================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   api/python_boilerplate
+   api/{{ cookiecutter.project_slug }}
 
 
 Indices and tables
