@@ -24,6 +24,7 @@ share/python-wheels/
 
 # Testing
 .tox
+.coverage
 
 # Sphinx documentation
 docs/_build/
