@@ -1,7 +1,7 @@
 SHELL := /bin/sh
 
 PROJECT_SLUG := "{{ cookiecutter.project_slug }}"
-SOURCES := $(shell find "{{ cookiecutter.project_slug }}" -name '*.py')
+SOURCES := $(shell find $(PROJECT_SLUG) -name '*.py')
 UNITTESTS := $(shell find "unittests" -name '*.py')
 TOX_CONTAINER_DEPS = tox.ini
 PYVER := $(shell python3 -c "from sys import version_info; print(f'{version_info.major}.{version_info.minor}')")
@@ -10,14 +10,14 @@ PY_TARGETS = $(foreach PY, $(PY_VERSIONS), py$(PY))
 
 START_CONTAINER_CMD = ./buildscripts/start_container.sh $(PROJECT_SLUG)
 
-.PHONY: all image dist docs format lint shell test $(PY_TARGETS) dev clean
+.PHONY: all image package docs format lint shell test $(PY_TARGETS) dev clean
 
 all: test
 
 image:
 	./buildscripts/build_image.sh $(PROJECT_SLUG)
 
-dist: $(SOURCES) setup.py $(TOX_CONTAINER_DEPS)
+package: $(SOURCES) setup.py $(TOX_CONTAINER_DEPS)
 	$(START_CONTAINER_CMD) tox -e wheel
 
 docs: $(SOURCES) docs/conf.py $(TOX_CONTAINER_DEPS)
